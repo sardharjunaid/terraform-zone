@@ -1,5 +1,5 @@
 resource "aws_vpc" "main" {
-  cidr_block           = "196.168.0.0/16"
+  cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   tags = {
     Name = "from-tf"
@@ -9,8 +9,8 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "web" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "196.168.0.0/24"
-  availability_zone = "ap-south-1a"
+  cidr_block        = var.web_subnet_cidr
+  availability_zone = var.web_subnet_az
   tags = {
     Name = "web"
     Env  = "dev"
@@ -21,8 +21,8 @@ resource "aws_subnet" "web" {
 
 resource "aws_subnet" "app" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "196.168.1.0/24"
-  availability_zone = "ap-south-1a"
+  cidr_block        = var.app_subnet_cidr
+  availability_zone = var.app_subnet_az
   tags = {
     Name = "app"
     Env  = "dev"
@@ -32,8 +32,8 @@ resource "aws_subnet" "app" {
 
 resource "aws_subnet" "db" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "196.168.2.0/24"
-  availability_zone = "ap-south-1a"
+  cidr_block        = var.db_subnet_cidr
+  availability_zone = var.db_subnet_az
   tags = {
     Name = "db"
     Env  = "dev"
