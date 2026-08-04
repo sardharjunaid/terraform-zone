@@ -1,43 +1,31 @@
 resource "aws_vpc" "main" {
-  cidr_block           = var.vpc_cidr
+  cidr_block           = var.vpc_info.cidr
   enable_dns_hostnames = true
-  tags = {
-    Name = "from-tf"
-    Env  = "dev"
-  }
+  tags = var.vpc_info.tags
 }
 
 resource "aws_subnet" "web" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = var.web_subnet_cidr
-  availability_zone = var.web_subnet_az
-  tags = {
-    Name = "web"
-    Env  = "dev"
-  }
+  cidr_block        = var.web_subnet_info.cidr
+  availability_zone = var.web_subnet_info.az
+  tags = var.web_subnet_info.tags
   depends_on = [aws_vpc.main]
 
 }
 
 resource "aws_subnet" "app" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = var.app_subnet_cidr
-  availability_zone = var.app_subnet_az
-  tags = {
-    Name = "app"
-    Env  = "dev"
-  }
+  cidr_block        = var.app_subnet_info.cidr
+  availability_zone = var.app_subnet_info.az
+  tags = var.app_subnet_info.tags
   depends_on = [aws_vpc.main]
 }
 
 resource "aws_subnet" "db" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = var.db_subnet_cidr
-  availability_zone = var.db_subnet_az
-  tags = {
-    Name = "db"
-    Env  = "dev"
-  }
+  cidr_block        = var.db_subnet_info.cidr
+  availability_zone = var.db_subnet_info.az
+  tags = var.db_subnet_info.tags
   depends_on = [aws_vpc.main]
 }
 

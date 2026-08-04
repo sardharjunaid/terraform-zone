@@ -1,7 +1,36 @@
-vpc_cidr        = "10.0.0.0/16"
-web_subnet_cidr = "10.0.0.0/24"
-web_subnet_az   = "ap-south-1a"
-app_subnet_az   = "ap-south-1a"
-app_subnet_cidr = "10.0.1.0/24"
-db_subnet_az    = "ap-south-1a"
-db_subnet_cidr  = "10.0.2.0/24"
+region = "ap-south-1"
+
+vpc_info = {
+  cidr = "10.10.0.0/16"
+  tags = {
+    Name = "terraform-vpc1"
+    Env  = "dev"
+  }
+}
+
+web_subnet_info = {
+  cidr = "10.10.0.0/24"
+  az   = "ap-south-1a"
+  tags = {
+    Name = "web1"
+    Env  = "dev"
+  }
+}
+
+app_subnet_info = {
+  cidr = "10.10.1.0/24"
+  az   = "ap-south-1a"
+  tags = {
+    Name = "app1"
+    Env  = "dev"
+  }
+}
+
+db_subnet_info = {
+  cidr = "10.10.2.0/24"
+  az   = "ap-south-1a"
+  tags = {
+    Name = "db1"
+    Env  = "dev"
+  }
+}

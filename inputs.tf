@@ -1,41 +1,80 @@
-variable "vpc_cidr" {
+variable "region" {
   type        = string
-  description = "vpc cidr"
-  default     = "192.168.0.0/16"
+  description = "resources region"
+  default     = "ap-south-1"
 }
 
-variable "web_subnet_cidr" {
-  type        = string
-  description = "web subnet cidr"
-  default     = "192.168.0.0/24"
+variable "vpc_info" {
+  type = object({
+    cidr = string
+    tags = map(string)
+  })
+  default = {
+    cidr = "192.168.0.0/16"
+    tags = {
+      Name = "from-tf"
+      Env  = "dev"
+    }
+  }
+  description = "vpc info"
 }
 
-variable "web_subnet_az" {
-  type        = string
-  description = "we subnet availability zones"
-  default     = "ap-south-1a"
+
+variable "web_subnet_info" {
+  type = object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  })
+  default = {
+    cidr = "192.168.0.0/16"
+    az   = "ap-south-1a"
+    tags = {
+      Name = "web"
+      Env  = "dev"
+    }
+  }
+  description = "web subnet info"
 }
 
-variable "app_subnet_cidr" {
-  type        = string
-  description = "app subnet cidr"
-  default     = "192.168.1.0/24"
+
+
+variable "app_subnet_info" {
+  type = object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  })
+  default = {
+    az   = "ap-south-1a"
+    cidr = "192.168.1.0/24"
+    tags = {
+      Name = "app"
+      Env  = "dev"
+    }
+  }
+  description = "app subnet info"
 }
 
-variable "app_subnet_az" {
-  type        = string
-  description = "app subnet availabiliy zones"
-  default     = "ap-south-1a"
+
+
+
+
+
+variable "db_subnet_info" {
+  type = object({
+    cidr = string
+    az   = string
+    tags = map(string)
+  })
+  default = {
+    az   = "ap-south-1a"
+    cidr = "192.168.2.0/24"
+    tags = {
+      Name = "db"
+      Env  = "dev"
+    }
+  }
+  description = "db subne info"
 }
 
-variable "db_subnet_cidr" {
-  type        = string
-  description = "db subnet cidr"
-  default     = "192.168.2.0/24"
-}
-
-variable "db_subnet_az" {
-  type        = string
-  description = "db subnet availability zones"
-  default     = "ap-south-1a"
-}
