@@ -19,62 +19,80 @@ variable "vpc_info" {
   description = "vpc info"
 }
 
-
-variable "web_subnet_info" {
-  type = object({
+variable "public_subnets" {
+  type = list(object({
     cidr = string
     az   = string
     tags = map(string)
-  })
-  default = {
-    cidr = "192.168.0.0/16"
-    az   = "ap-south-1a"
-    tags = {
-      Name = "web"
-      Env  = "dev"
-    }
-  }
-  description = "web subnet info"
+  }))
+  description = "public subnets"
 }
 
-
-
-variable "app_subnet_info" {
-  type = object({
+variable "private_subnets" {
+  type = list(object({
     cidr = string
     az   = string
     tags = map(string)
-  })
-  default = {
-    az   = "ap-south-1a"
-    cidr = "192.168.1.0/24"
-    tags = {
-      Name = "app"
-      Env  = "dev"
-    }
-  }
-  description = "app subnet info"
+  }))
+  description = "private subnets"
 }
 
 
+# variable "web_subnet_info" {
+#   type = object({
+#     cidr = string
+#     az   = string
+#     tags = map(string)
+#   })
+#   default = {
+#     cidr = "192.168.0.0/16"
+#     az   = "ap-south-1a"
+#     tags = {
+#       Name = "web"
+#       Env  = "dev"
+#     }
+#   }
+#   description = "web subnet info"
+# }
+
+
+
+# variable "app_subnet_info" {
+#   type = object({
+#     cidr = string
+#     az   = string
+#     tags = map(string)
+#   })
+#   default = {
+#     az   = "ap-south-1a"
+#     cidr = "192.168.1.0/24"
+#     tags = {
+#       Name = "app"
+#       Env  = "dev"
+#     }
+#   }
+#   description = "app subnet info"
+# }
 
 
 
 
-variable "db_subnet_info" {
-  type = object({
-    cidr = string
-    az   = string
-    tags = map(string)
-  })
-  default = {
-    az   = "ap-south-1a"
-    cidr = "192.168.2.0/24"
-    tags = {
-      Name = "db"
-      Env  = "dev"
-    }
-  }
-  description = "db subne info"
-}
+
+
+# variable "db_subnet_info" {
+#   type = object({
+#     cidr = string
+#     az   = string
+#     tags = map(string)
+#   })
+#   default = {
+#     az   = "ap-south-1a"
+#     cidr = "192.168.2.0/24"
+#     tags = {
+#       Name = "db"
+#       Env  = "dev"
+#     }
+#   }
+#   description = "db subne info"
+# }
 
