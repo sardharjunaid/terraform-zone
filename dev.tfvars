@@ -75,6 +75,51 @@ private_subnets = [{
   }
 ]
 
+web_security_group_info = {
+  tags = {
+    Name = "web"
+    Env  = "dev"
+  }
+  ingress_rules = [{
+    tags = {
+      Name = "web-ingress-http"
+      Env  = "dev"
+    }
+    cidr_ipv4   = "0.0.0.0/0"
+    from_port   = 80
+    ip_protocol = "tcp"
+    to_port     = 80
+    },
+    {
+      tags = {
+        Name = "web-ingress-https"
+        Env  = "dev"
+      }
+      cidr_ipv4   = "0.0.0.0/0"
+      from_port   = 443
+      ip_protocol = "tcp"
+      to_port     = 443
+    },
+    {
+      tags = {
+        Name = "web-ingress-ssh"
+        Env  = "dev"
+      }
+      cidr_ipv4   = "0.0.0.0/0"
+      from_port   = 22
+      ip_protocol = "tcp"
+      to_port     = 22
+  }]
+  egress_rule = [{
+    tags = {
+      Name = "web-egress"
+      Env  = "dev"
+    }
+    cidr_ipv4   = "0.0.0.0/0"
+    ip_protocol = "-1"
+  }]
+}
+
 
 # web_subnet_info = {
 #   cidr = "10.10.0.0/24"

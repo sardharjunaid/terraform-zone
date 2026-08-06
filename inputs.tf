@@ -38,6 +38,27 @@ variable "private_subnets" {
 }
 
 
+variable "web_security_group_info" {
+  type = object({
+    tags = map(string)
+    ingress_rules = list(object({
+      tags        = map(string)
+      cidr_ipv4   = string
+      from_port   = number
+      ip_protocol = string
+      to_port     = number
+    }))
+    egress_rule = list(object({
+      tags        = map(string)
+      cidr_ipv4   = string
+      ip_protocol = string
+    }))
+  })
+  description = "security group for inbound and outbound"
+}
+
+
+
 # variable "web_subnet_info" {
 #   type = object({
 #     cidr = string
